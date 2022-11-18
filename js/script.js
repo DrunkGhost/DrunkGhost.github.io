@@ -1,5 +1,5 @@
 // JavaScript source code
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase/database.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase/firebase-database.js';
 const firebaseConfig = {
     apiKey: "AIzaSyBk4D0bAqiFUWcdQwDxzygtmNXnaL_feMM",
     authDomain: "firstwebapp-71ba8.firebaseapp.com",
