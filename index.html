@@ -15,6 +15,10 @@
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js'
         import { getDatabase, ref, child, get } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js'
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js'
+
+
+
         const firebaseConfig = {
             apiKey: "AIzaSyBk4D0bAqiFUWcdQwDxzygtmNXnaL_feMM",
             authDomain: "firstwebapp-71ba8.firebaseapp.com",
@@ -27,9 +31,36 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
+
+        const provider = new GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+        const auth = getAuth();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+
+
         const db = ref(getDatabase());
 
-        get(child(db, `messages`)).then((snapshot) => {
+        const chatId = 'one'
+
+        get(child(db, `messages/${chatId}/message`)).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
             } else {
