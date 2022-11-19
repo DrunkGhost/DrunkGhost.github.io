@@ -35,7 +35,7 @@
             return chatsList;
         }
 
-        const chats = getChats(db);
+        const chats = await getChats(db);
         console.log(chats);
 
         const colorPicker = new iro.ColorPicker('#picker', {
