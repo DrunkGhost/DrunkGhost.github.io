@@ -29,7 +29,7 @@
         const app = initializeApp(firebaseConfig);
         const db = ref(getDatabase());
 
-        get(child(db, `chats`)).then((snapshot) => {
+        get(child(db, `chats/title`)).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
             } else {
