@@ -28,6 +28,15 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        async function getChats(db) {
+            const chatsCol = collection(db, 'chats');
+            # const citySnapshot = await getDocs(citiesCol);
+            # const cityList = citySnapshot.docs.map(doc => doc.data());
+            return chatsCol;
+        }
+
+        print(getChats);
+
         const colorPicker = new iro.ColorPicker('#picker', {
             borderColor: "#ffffff",
             borderWidth: 1,
