@@ -30,9 +30,9 @@
 
         async function getChats(db) {
             const chatsCol = collection(db, 'chats');
-            // const citySnapshot = await getDocs(citiesCol);
-            // const cityList = citySnapshot.docs.map(doc => doc.data());
-            return chatsCol;
+            const chatSnapshot = await getDocs(chatsCol);
+            const chatsList = chatSnapshot.docs.map(doc => doc.data());
+            return chatsList;
         }
 
         const chats = getChats();
